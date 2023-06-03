@@ -4,11 +4,12 @@ provider "aws" {
 }
 
 terraform {
-  # Library 버전
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 3.20"
+    backend "aws" {
+            backend "s3" {
+            bucket = "s3-an2-sha-dev-tf-jenkins" 
+            key    = "jenkins_temp/terraform.tfstate"
+            region = "ap-northeast-2"
+            encrypt = true
+        }
     }
-  }
 }
